@@ -1,10 +1,21 @@
-import json
+import sys, json
+from sys import platform
 from subprocess import check_output
-from gi.repository import Gio
 
+if platform == "linux" or platform == "linux2":
+    mode = True
+elif platform == "darwin":
+    mode = False
+else:
+    sys.exit("not supported yet")
 url = json.loads(check_output("curl -X GET 'http://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=en-US'", shell = True))['images'][0]['url']
-dirname = "/home/" + check_output("whoami", shell = True).split()[0] + "/Pictures/Bing/"
+if mode:
+    dirname = "/home/" + check_output("whoami", shell = True).split()[0] + "/Pictures/Bing/"
+else:
+    dirname = "/Users/" + check_output("whoami", shell = True).split()[0] + "/Pictures/Bing/"
 filename = dirname + url[url.rfind("/") + 1:]
 check_output("mkdir -p " + dirname + " && wget https://bing.com" + url + " -O " + filename, shell = True)
-gsettings = Gio.Settings.new('org.gnome.desktop.background')
-gsettings.set_string('picture-uri', 'file://%s' % filename)
+if mode:
+    check_output("gsettings set org.gnome.desktop.background picture-uri file://" + filename, shell = True)
+else:
+    check_output("osascript -e 'tell application \"Finder\" to set desktop picture to POSIX file \"%s\"'" % filename, shell = True)
