@@ -1,14 +1,17 @@
-import sys, json
+import sys, json, argparse
 from sys import platform
 from subprocess import check_output
 
+parser = argparse.ArgumentParser()
+parser.add_argument('-l', '--locale', dest='locale', action='store', default='en-US', type=str)
+results = parser.parse_args()
 if platform == "linux" or platform == "linux2":
     mode = True
 elif platform == "darwin":
     mode = False
 else:
     sys.exit("not supported yet")
-url = json.loads(check_output("curl -X GET 'http://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=en-US'", shell = True).decode('utf-8'))['images'][0]['url']
+url = json.loads(check_output("curl -X GET 'http://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=%s'" % results.locale, shell = True).decode('utf-8'))['images'][0]['url']
 if mode:
     dirname = "/home/" + check_output("whoami", shell = True).split()[0] + "/Pictures/Bing/"
 else:
