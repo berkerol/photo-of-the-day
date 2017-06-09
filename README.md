@@ -1,9 +1,9 @@
 # Photo of the Day
 
 * Downloads Bing Photo of the Day and makes it desktop background
-* Saves all photos to ~/Pictures/Bing
-* Supports different local photos with -l or --locale arguments
-* Supports different resolutions with -r or --resolution arguments (1920x1200 is watermarked, others are not)
+* Saves all photos to *~/Pictures/Bing*
+* Supports different local photos with *-l* or *--locale* arguments
+* Supports different resolutions with *-r* or *--resolution* arguments (1920x1200 is watermarked, others are not)
 
 ## Supported Desktops
 
