@@ -1,9 +1,10 @@
 # Photo of the Day
 
-* Downloads Bing Photo of the Day and makes it desktop background
-* Saves all photos to *~/Pictures/Bing*
-* Supports different local photos with *-l* or *--locale* arguments
-* Supports different resolutions with *-r* or *--resolution* arguments (1920x1200 is watermarked, others are not)
+* Downloads Bing Photo of the Day or NASA Astronomy Picture of the Day and makes it desktop background
+* Saves all photos to *~/Pictures/Bing* or *~/Pictures/NASA*
+* Supports NASA photos of different dates with *-d* or *--date* arguments
+* Supports Bing photos of different locales with *-l* or *--locale* arguments
+* Supports Bing photos of different resolutions with *-r* or *--resolution* arguments (1920x1200 is watermarked, others are not)
 
 ## Supported Desktops
 
@@ -14,7 +15,14 @@
 ## TODO
 
 * [ ] Install, uninstall, auto-start
-* [ ] Support for GoPro, NASA, National Geographic photos
-* [x] Support for Mac OS X
-* [x] Support for different local photos
-* [x] Support for different resolutions
+* [x] Bing Photo of the Day
+* [ ] GoPro Photo of the Day
+* [x] NASA Astronomy Picture of the Day
+* [ ] National Geographic Photo of the Day
+* [x] Locale option for Bing
+* [x] Resolution option for Bing
+* [x] Date option for NASA
+* [ ] Windows 10
+* [x] Mac OS X
+* [x] Linux Unity & GNOME
+* [ ] Other Linux desktops
