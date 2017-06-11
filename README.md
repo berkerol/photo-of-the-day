@@ -10,6 +10,7 @@
 - Supports Bing photos of different locales with _-l_ or _--locale_ arguments
 - Supports Bing photos of different resolutions with _-r_ or _--resolution_ arguments
 - Supports NASA photos of different dates with _-d_ or _--date_ arguments
+- Choose how the background is displayed (Linux only): wallpaper, centered, scaled, stretched, zoom (default), spanned
 
 ## Supported Desktops
 
@@ -43,6 +44,7 @@ Example                         | Description
 - [x] Locale option for Bing
 - [x] Resolution option for Bing
 - [x] Date option for NASA
+- [x] Background display options
 - [ ] Windows 10
 - [x] Mac OS X
 - [x] Linux Unity & GNOME

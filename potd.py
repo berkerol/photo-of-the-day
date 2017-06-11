@@ -6,10 +6,11 @@ from subprocess import check_output
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument('-n', '--nasa', dest='type', action='store_false', default = True, help='NASA photo option')
-    parser.add_argument('-l', '--locale', dest='locale', action='store', default='en-US', type=str, help='Bing locale option')
-    parser.add_argument('-r', '--resolution', dest='resolution', action='store', default='1920x1080', type=str, help='Bing resolution option')
-    parser.add_argument('-d', '--date', dest='date', action='store', default=time.strftime("%Y-%m-%d"), type=str, help='NASA date option')
+    parser.add_argument('-n', '--nasa', dest='type', action='store_false', default = True, help='NASA photo option (default: Bing)')
+    parser.add_argument('-l', '--locale', dest='locale', action='store', default='en-US', type=str, help='Bing locale option (default: en-US)')
+    parser.add_argument('-r', '--resolution', dest='resolution', action='store', default='1920x1080', type=str, help='Bing resolution option (default: 1920x1080)')
+    parser.add_argument('-d', '--date', dest='date', action='store', default=time.strftime("%Y-%m-%d"), type=str, help='NASA date option (default: today)')
+    parser.add_argument('-o', '--option', dest='option', action='store', default='zoom', type=str, help='wallpaper, centered, scaled, stretched, zoom (default), spanned')
     arguments = parser.parse_args()
     if platform == "linux" or platform == "linux2":
         mode = True
@@ -32,5 +33,6 @@ if __name__ == "__main__":
     check_output("mkdir -p " + dirname + " && wget " + url + " -O " + filename, shell = True)
     if mode:
         check_output("gsettings set org.gnome.desktop.background picture-uri file://" + filename, shell = True)
+        check_output("gsettings set org.gnome.desktop.background picture-options \"%s\"" % arguments.option, shell = True)
     else:
         check_output("osascript -e 'tell application \"Finder\" to set desktop picture to POSIX file \"%s\"'" % filename, shell = True)
