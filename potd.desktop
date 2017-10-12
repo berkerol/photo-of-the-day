@@ -1,0 +1,13 @@
+[Desktop Entry]
+Type=Application
+GenericName=Wallpaper Changer
+Name=Photo of the Day
+Comment=Downloads Bing Photo of the Day & NASA Astronomy Picture of the Day and makes it desktop background.
+Exec=potd
+Icon=gnome-info
+Terminal=false
+Categories=
+
+X-GNOME-Autostart-enabled=true
+X-GNOME-Autostart-Delay=0
+
