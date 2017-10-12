@@ -11,6 +11,7 @@ Downloads [Bing Photo of the Day](https://www.bing.com/gallery/) & [NASA Astrono
 - Supports NASA photos of different dates with `-d` or `--date` arguments.
 - Supports Linux background display options with `-o` or `--option` arguments.
 - Stores all photos in _~/Pictures/Bing_ & _~/Pictures/NASA_.
+- Can be installed (can be used as a command) & uninstalled.
 - Runs at startup automatically.
 
 ## Supported Desktops
@@ -43,7 +44,7 @@ $ ./unistall.sh
 $ ./autostart.sh
 ```
 
-You can customize the startup command in potd.desktop (for Mac OS X) or potd.plist (Linux) file.
+You must install first in order to use this feature. You can customize the startup command in potd.plist (for Mac OS X) or potd.desktop (Linux) file.
 
 ## Usage
 
