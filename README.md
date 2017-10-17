@@ -20,6 +20,8 @@ Downloads [Bing Photo of the Day](https://www.bing.com/gallery/) & [NASA Astrono
 - Linux Unity
 - Linux GNOME
 
+**Important Note for Mac OS X users:** This program requires _wget_ command but _wget_ is not installed on Mac OS X by default. So you must install _wget_ first in order to use this program.
+
 ## Options
 
 - Bing Locales: ar-XA, bg-BG, cs-CZ, da-DK, de-AT, de-CH, de-DE, el-GR, en-AU, en-CA, en-GB, en-ID, en-IE, en-IN, en-MY, en-NZ, en-PH, en-SG, en-US, en-XA, en-ZA, es-AR, es-CL, es-ES, es-MX, es-US, es-XL, et-EE, fi-FI, fr-BE, fr-CA, fr-CH, fr-FR, he-IL, hr-HR, hu-HU, it-IT, ja-JP, ko-KR, lt-LT, lv-LV, nb-NO, nl-BE, nl-NL, pl-PL, pt-BR, pt-PT, ro-RO, ru-RU, sk-SK, sl-SL, sv-SE, th-TH, tr-TR, uk-UA, zh-CN, zh-HK, zh-TW
@@ -44,7 +46,7 @@ $ ./unistall.sh
 $ ./autostart.sh
 ```
 
-You must install first in order to use this feature. You can customize the startup command in potd.plist (for Mac OS X) or potd.desktop (Linux) file.
+You must install it first in order to use this feature. You can customize the startup command in potd.plist (for Mac OS X) or potd.desktop (for Linux) file.
 
 ## Usage
 
