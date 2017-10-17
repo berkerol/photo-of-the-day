@@ -33,8 +33,12 @@ if __name__ == "__main__":
             photo[:photo.rfind("_") + 1] + arguments.resolution + ".jpg"
         storedir = "/Pictures/Bing/"
     else:
-        url = json.loads(check_output("curl -X GET 'https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY&hd=True&date=%s'" %
-                                      arguments.date, shell=True).decode('utf-8'))['hdurl']
+        photo = json.loads(check_output("curl -X GET 'https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY&hd=True&date=%s'" %
+                                      arguments.date, shell=True).decode('utf-8'))
+        if 'hdurl' in photo:
+            url = photo['hdurl']
+        else:
+            sys.exit("no photo today")
         storedir = "/Pictures/NASA/"
     if mode:
         dirname = "/home/" + \
