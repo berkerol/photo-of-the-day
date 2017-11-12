@@ -4,17 +4,17 @@
 
 <plist version="1.0">
 
-<dict>
+  <dict>
 
     <key>Label</key>
 
-    <string>com.berkerol.potd</string>
+    <string>potd</string>
 
     <key>ProgramArguments</key>
 
     <array>
 
-        <string>potd</string>
+      <string>potd</string>
 
     </array>
 
@@ -22,6 +22,6 @@
 
     <true/>
 
-</dict>
+  </dict>
 
 </plist>
