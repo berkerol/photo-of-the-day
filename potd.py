@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 import sys
 import json
@@ -33,20 +33,19 @@ if __name__ == "__main__":
             photo[:photo.rfind("_") + 1] + arguments.resolution + ".jpg"
         storedir = "/Pictures/Bing/"
     else:
-        photo = json.loads(check_output("curl -X GET 'https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY&hd=True&date=%s'" %
-                                      arguments.date, shell=True).decode('utf-8'))
+        photo = json.loads(check_output(
+            "curl -X GET 'https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY&hd=True&date=%s'" % arguments.date, shell=True).decode('utf-8'))
         if 'hdurl' in photo:
             url = photo['hdurl']
         else:
             sys.exit("no photo today")
         storedir = "/Pictures/NASA/"
     if mode:
-        dirname = "/home/" + \
-            check_output("whoami", shell=True).split()[0] + storedir
+        dirname = "/home/"
     else:
-        dirname = "/Users/" + \
-            check_output("whoami", shell=True).decode(
-                'utf-8').split()[0] + storedir
+        dirname = "/Users/"
+    dirname += check_output("whoami",
+                            shell=True).decode('utf-8').split()[0] + storedir
     filename = dirname + url[url.rfind("/") + 1:]
     check_output("mkdir -p " + dirname + " && wget " +
                  url + " -O " + filename, shell=True)
