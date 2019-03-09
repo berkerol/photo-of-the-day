@@ -28,15 +28,16 @@ if __name__ == "__main__":
         sys.exit("not supported yet")
     if arguments.type:
         photo = json.loads(check_output("curl -X GET 'https://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=%s'" %
-                                        arguments.locale, shell=True).decode('utf-8'))['images'][0]['url']
-        url = "https://www.bing.com" + \
-            photo[:photo.rfind("_") + 1] + arguments.resolution + ".jpg"
+                                        arguments.locale, shell=True).decode('utf-8'))['images'][0]['urlbase'] + "_" + arguments.resolution + ".jpg"
+        url = "https://www.bing.com" + photo
+        photo_name = photo[photo.find(".") + 1:]
         storedir = "/Pictures/Bing/"
     else:
         photo = json.loads(check_output(
             "curl -X GET 'https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY&hd=True&date=%s'" % arguments.date, shell=True).decode('utf-8'))
         if 'hdurl' in photo:
             url = photo['hdurl']
+            photo_name = url[url.rfind("/") + 1:]
         else:
             sys.exit("no photo today")
         storedir = "/Pictures/NASA/"
@@ -46,7 +47,7 @@ if __name__ == "__main__":
         dirname = "/Users/"
     dirname += check_output("whoami",
                             shell=True).decode('utf-8').split()[0] + storedir
-    filename = dirname + url[url.rfind("/") + 1:]
+    filename = dirname + photo_name
     check_output("mkdir -p " + dirname + " && wget " +
                  url + " -O " + filename, shell=True)
     if mode:
