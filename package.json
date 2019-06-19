@@ -1,11 +1,14 @@
 {
   "name": "photo-of-the-day",
   "version": "1.0.0",
-  "description": "Downloads Bing & NASA Photo of the Day and sets it as wallpaper",
+  "description": "Downloads Bing, NASA, National Geographic Photo of the Day and sets it as wallpaper",
   "keywords": [
     "cli",
     "Bing",
     "NASA",
+    "Astronomy",
+    "Nat Geo",
+    "National Geographic",
     "photo",
     "photo of the day",
     "background",

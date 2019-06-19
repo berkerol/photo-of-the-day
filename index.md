@@ -1,10 +1,10 @@
 # Photo of the Day
 
-Downloads [Bing Photo of the Day](https://www.bing.com) & [NASA Astronomy Picture of the Day](https://apod.nasa.gov/apod/astropix.html) and sets it as wallpaper. You can view it [on npm](https://www.npmjs.com/package/photo-of-the-day).
+Downloads [Bing Photo of the Day](https://www.bing.com), [NASA Astronomy Picture of the Day](https://apod.nasa.gov/apod/astropix.html), [National Geographic Photo of the Day](http://www.nationalgeographic.com/photography/photo-of-the-day) and sets it as wallpaper. You can view it [on npm](https://www.npmjs.com/package/photo-of-the-day).
 
 ## Features
 
-* Choose Bing or NASA photos.
+* Choose Bing, NASA or National Geographic photos.
 * Set locale & resolution for Bing photos.
 * Use custom API key for NASA.
 * Set date for NASA photos.
@@ -44,6 +44,7 @@ You must install it globally first in order to use this feature. You can customi
 Flag | Short | Description | Usage
 -----|-------|---------|------
 `--nasa` | `-n` | Choose NASA photo | `-n`
+`--ng` | `-g` | Choose National Geographic photo | `-g`
 `--locale` | `-l` | Set locale for Bing | `-l en-GB`
 `--resolution` | `-r` | Set resolution for Bing | `-r 1920x1200`
 `--key` | `-k` | Set API key for NASA | `-k SOME_API_KEY`
@@ -56,6 +57,7 @@ Example | Description
 --------|------------
 `$ potd` | Sets wallpaper as Bing photo
 `$ potd -n` | Sets wallpaper as NASA photo
+`$ potd -g` | Sets wallpaper as National Geographic photo
 `$ potd -l en-GB` | Sets wallpaper as Bing from Great Britain
 `$ potd -r 1920x1200` | Sets wallpaper as Bing with 1920x1200 resolution
 `$ potd -l en-GB -r 1920x1200` | Sets wallpaper as Bing from Great Britain with 1920x1200 resolution
