@@ -77,7 +77,6 @@ Example | Description
 
 * [x] Run at startup
 * [x] Bing Photo of the Day
-* [ ] GoPro Photo of the Day
 * [x] NASA Astronomy Picture of the Day
 * [x] National Geographic Photo of the Day
 * [x] Locale option for Bing

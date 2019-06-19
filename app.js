@@ -1,11 +1,10 @@
 #!/usr/bin/env node
 
+const fs = require('fs');
 const childProcess = require('child_process');
-const fs = require('fs').promises;
 
 const axios = require('axios');
 const yargs = require('yargs');
-const wget = require('node-wget');
 
 const argv = yargs
   .options({
@@ -111,17 +110,19 @@ const main = async () => {
     });
   const directory = (linux ? '/home/' : '/Users/') + process.env.USER + photoDir;
   const fileName = directory + photoName;
-  await fs.mkdir(directory, { recursive: true })
+  await fs.promises.mkdir(directory, { recursive: true })
     .catch(err => {
       console.error(err);
       process.exitCode = 1;
     });
-  await wget({ url: photoUrl, dest: fileName, timeout: 20000 }, (err, response, body) => {
-    if (err) {
+  await axios({ url: photoUrl, responseType: 'stream', timeout: 20000 })
+    .then(res => {
+      res.data.pipe(fs.createWriteStream(fileName));
+    })
+    .catch(err => {
       console.error(err);
       process.exitCode = 1;
-    }
-  });
+    });
   let command;
   if (linux) {
     command = `gsettings set org.gnome.desktop.background picture-options "${argv.o}" & gsettings set org.gnome.desktop.background picture-uri "file://${fileName}"`;
