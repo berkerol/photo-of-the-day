@@ -1,0 +1,38 @@
+{
+  "name": "photo-of-the-day",
+  "version": "1.0.0",
+  "description": "Downloads Bing & NASA Photo of the Day and sets it as wallpaper",
+  "keywords": [
+    "cli",
+    "Bing",
+    "NASA",
+    "photo",
+    "photo of the day",
+    "background",
+    "wallpaper"
+  ],
+  "homepage": "https://berkerol.github.io/photo-of-the-day",
+  "bugs": {
+    "url": "https://github.com/berkerol/photo-of-the-day/issues",
+    "email": "berk.erol@boun.edu.tr"
+  },
+  "license": "GPL-3.0-or-later",
+  "author": "Berk Erol <berk.erol@boun.edu.tr> (https://berkerol.github.io)",
+  "main": "app.js",
+  "preferGlobal": true,
+  "bin": {
+    "potd": "./app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/berkerol/photo-of-the-day.git"
+  },
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "axios": "^0.19.0",
+    "node-wget": "^0.4.3",
+    "yargs": "^13.2.4"
+  }
+}

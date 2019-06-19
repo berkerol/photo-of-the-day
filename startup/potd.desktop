@@ -2,7 +2,7 @@
 Type=Application
 GenericName=Wallpaper Changer
 Name=Photo of the Day
-Comment=Downloads Bing Photo of the Day & NASA Astronomy Picture of the Day and makes it desktop background.
+Comment=Downloads Bing Photo of the Day & NASA Astronomy Picture of the Day and sets it as wallpaper.
 Exec=potd
 Icon=gnome-info
 Terminal=false
