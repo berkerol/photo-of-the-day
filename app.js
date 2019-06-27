@@ -18,6 +18,13 @@ const argv = yargs
       describe: 'Choose National Geographic photo',
       type: 'boolean'
     },
+    'b': {
+      alias: 'before',
+      describe: 'Bing date option (# of days before)',
+      type: 'number',
+      default: 0,
+      choices: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
+    },
     'l': {
       alias: 'locale',
       describe: 'Bing locale option',
@@ -74,7 +81,16 @@ const main = async () => {
   } else if (argv.n) {
     searchUrl = `https://api.nasa.gov/planetary/apod?api_key=${argv.k}&hd=True&date=${argv.d}`;
   } else {
-    searchUrl = `https://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=${argv.l}`;
+    let idx = 0;
+    let n = 1;
+    if (argv.b <= 7) {
+      idx = argv.b;
+      n = 1;
+    } else {
+      idx = 7;
+      n = argv.b - 6;
+    }
+    searchUrl = `https://www.bing.com/HPImageArchive.aspx?format=js&idx=${idx}&n=${n}&mkt=${argv.l}`;
   }
   let photo;
   let photoUrl;
@@ -98,7 +114,7 @@ const main = async () => {
           process.exitCode = 1;
         }
       } else {
-        photo = `${res.data.images[0].urlbase}_${argv.r}.jpg`;
+        photo = `${res.data.images[res.data.images.length - 1].urlbase}_${argv.r}.jpg`;
         photoUrl = `https://www.bing.com${photo}`;
         photoName = photo.slice(photo.indexOf('.') + 1);
         photoDir += 'Bing/';
