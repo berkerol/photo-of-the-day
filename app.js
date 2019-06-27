@@ -13,7 +13,7 @@ const argv = yargs
       describe: 'Choose NASA photo',
       type: 'boolean'
     },
-    'g': {
+    'N': {
       alias: 'ng',
       describe: 'Choose National Geographic photo',
       type: 'boolean'
@@ -76,7 +76,7 @@ const main = async () => {
     process.exitCode = 1;
   }
   let searchUrl;
-  if (argv.g) {
+  if (argv.N) {
     searchUrl = 'https://www.nationalgeographic.com/photography/photo-of-the-day/_jcr_content/.gallery.json';
   } else if (argv.n) {
     searchUrl = `https://api.nasa.gov/planetary/apod?api_key=${argv.k}&hd=True&date=${argv.d}`;
@@ -98,7 +98,7 @@ const main = async () => {
   let photoDir = '/Pictures/';
   await axios(searchUrl)
     .then(res => {
-      if (argv.g) {
+      if (argv.N) {
         photo = res.data.items[0];
         photoUrl = photo.originalUrl;
         photoName = `${photo.title}.jpg`;

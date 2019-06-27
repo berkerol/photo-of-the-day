@@ -45,7 +45,7 @@ You must install it globally first in order to use this feature. You can customi
 Flag | Short | Description | Usage
 -----|-------|---------|------
 `--nasa` | `-n` | Choose NASA photo | `-n`
-`--ng` | `-g` | Choose National Geographic photo | `-g`
+`--ng` | `-N` | Choose National Geographic photo | `-N`
 `--before` | `-b` | Set date for Bing | `-b 1`
 `--locale` | `-l` | Set locale for Bing | `-l en-GB`
 `--resolution` | `-r` | Set resolution for Bing | `-r 1920x1200`
@@ -59,7 +59,7 @@ Example | Description
 --------|------------
 `$ potd` | Sets wallpaper as Bing photo
 `$ potd -n` | Sets wallpaper as NASA photo
-`$ potd -g` | Sets wallpaper as National Geographic photo
+`$ potd -N` | Sets wallpaper as National Geographic photo
 `$ potd -b 1` | Sets wallpaper as Bing from yesterday
 `$ potd -l en-GB` | Sets wallpaper as Bing from Great Britain
 `$ potd -r 1920x1200` | Sets wallpaper as Bing with 1920x1200 resolution
