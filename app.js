@@ -51,6 +51,11 @@ const argv = yargs
       type: 'string',
       default: new Date().toISOString().slice(0, 10)
     },
+    'R': {
+      alias: 'random',
+      describe: 'NASA random option',
+      type: 'boolean'
+    },
     'o': {
       alias: 'option',
       describe: 'Linux background display option',
@@ -79,7 +84,7 @@ const main = async () => {
   if (argv.N) {
     searchUrl = 'https://www.nationalgeographic.com/photography/photo-of-the-day/_jcr_content/.gallery.json';
   } else if (argv.n) {
-    searchUrl = `https://api.nasa.gov/planetary/apod?api_key=${argv.k}&hd=True&date=${argv.d}`;
+    searchUrl = `https://api.nasa.gov/planetary/apod?api_key=${argv.k}&hd=True&${argv.R ? 'count=1' : `date=${argv.d}`}`;
   } else {
     let idx = 0;
     let n = 1;
@@ -104,7 +109,7 @@ const main = async () => {
         photoName = `${photo.title}.jpg`;
         photoDir += 'National Geographic/';
       } else if (argv.n) {
-        photo = res.data;
+        photo = argv.R ? res.data[0] : res.data;
         if (photo.hdurl) {
           photoUrl = photo.hdurl;
           photoName = photoUrl.slice(photoUrl.lastIndexOf('/') + 1);
