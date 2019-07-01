@@ -110,18 +110,19 @@ const main = async () => {
   await axios(searchUrl)
     .then(res => {
       if (argv.N) {
-        photo = res.data.items[+argv.d.slice(8) - 1];
-        if (!photo) {
+        if (+argv.d.slice(8) <= res.data.items.length) {
+          photo = res.data.items[res.data.items.length - +argv.d.slice(8)];
+          if (photo.image) {
+            photoUrl = photo.image.uri;
+            photoName = `${photo.image.title}.jpg`;
+          } else {
+            photoUrl = photo.originalUrl;
+            photoName = `${photo.title}.jpg`;
+          }
+          photoDir += 'National Geographic/';
+        } else {
           throw new Error(`There is no photo on ${argv.d}.`);
         }
-        if (photo.image) {
-          photoUrl = photo.image.uri;
-          photoName = `${photo.image.title}.jpg`;
-        } else {
-          photoUrl = photo.originalUrl;
-          photoName = `${photo.title}.jpg`;
-        }
-        photoDir += 'National Geographic/';
       } else if (argv.n) {
         photo = argv.R ? res.data[0] : res.data;
         if (photo.hdurl) {

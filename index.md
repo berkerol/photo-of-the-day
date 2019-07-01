@@ -51,8 +51,8 @@ Flag | Short | Description | Usage
 `--locale` | `-l` | Set locale for Bing | `-l en-GB`
 `--resolution` | `-r` | Set resolution for Bing | `-r 1920x1200`
 `--key` | `-k` | Set API key for NASA | `-k SOME_API_KEY`
-`--date` | `-d` | Set date for NASA (YYYY-mm-dd) | `-d 2019-06-19`
-`--random` | `-R` | Choose a random photo from NASA | `-R`
+`--date` | `-d` | Set date for NASA or National Geographic (YYYY-mm-dd) | `-d 2019-06-19`
+`--random` | `-R` | Choose a random photo from NASA or National Geographic | `-R`
 `--option` | `-o` | Set background display option for Linux | `-o centered`
 
 ## Examples
