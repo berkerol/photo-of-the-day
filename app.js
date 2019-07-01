@@ -68,6 +68,9 @@ const argv = yargs
   .alias('help', 'h')
   .version()
   .alias('version', 'v')
+  .check(argv => {
+    return argv.d.length === 10 && !isNaN(new Date(argv.d)) && new Date(argv.d).toISOString().slice(0, 10) === argv.d;
+  })
   .argv;
 
 const main = async () => {
