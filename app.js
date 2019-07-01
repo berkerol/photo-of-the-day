@@ -45,16 +45,16 @@ const argv = yargs
       type: 'string',
       default: 'DEMO_KEY'
     },
-    'R': {
-      alias: 'random',
-      describe: 'NASA random option',
-      type: 'boolean'
-    },
     'd': {
       alias: 'date',
       describe: 'NASA & National Geographic date option (YYYY-mm-dd)',
       type: 'string',
       default: new Date().toISOString().slice(0, 10)
+    },
+    'R': {
+      alias: 'random',
+      describe: 'NASA & National Geographic random option',
+      type: 'boolean'
     },
     'o': {
       alias: 'option',
@@ -85,6 +85,10 @@ const main = async () => {
   }
   let searchUrl;
   if (argv.N) {
+    if (argv.R) {
+      const start = new Date(2009, 0, 1);
+      argv.d = new Date(start.getTime() + Math.random() * (new Date().getTime() - start.getTime())).toISOString().slice(0, 10);
+    }
     searchUrl = `https://www.nationalgeographic.com/photography/photo-of-the-day/_jcr_content/.gallery.${argv.d.slice(0, 7)}.json`;
   } else if (argv.n) {
     searchUrl = `https://api.nasa.gov/planetary/apod?api_key=${argv.k}&hd=True&${argv.R ? 'count=1' : `date=${argv.d}`}`;

@@ -7,8 +7,8 @@ Downloads [Bing Photo of the Day](https://www.bing.com), [NASA Astronomy Picture
 * Choose Bing, NASA or National Geographic photos.
 * Set date, locale & resolution for Bing photos.
 * Use custom API key for NASA.
-* Choose a random photo from NASA.
 * Set date for NASA & National Geographic photos.
+* Choose a random photo from NASA & National Geographic.
 * Set background display option for Linux.
 * Stores all photos in _~/Pictures/Bing_ & _~/Pictures/NASA_.
 * Runs at startup automatically.
@@ -51,8 +51,8 @@ Flag | Short | Description | Usage
 `--locale` | `-l` | Set locale for Bing | `-l en-GB`
 `--resolution` | `-r` | Set resolution for Bing | `-r 1920x1200`
 `--key` | `-k` | Set API key for NASA | `-k SOME_API_KEY`
-`--random` | `-R` | Choose a random photo from NASA | `-R`
 `--date` | `-d` | Set date for NASA (YYYY-mm-dd) | `-d 2019-06-19`
+`--random` | `-R` | Choose a random photo from NASA | `-R`
 `--option` | `-o` | Set background display option for Linux | `-o centered`
 
 ## Examples
@@ -67,8 +67,9 @@ Example | Description
 `$ potd -r 1920x1200` | Sets wallpaper as Bing with 1920x1200 resolution
 `$ potd -b 1 -l en-GB -r 1920x1200` | Sets wallpaper as Bing from yesterday and Great Britain with 1920x1200 resolution
 `$ potd -n -k SOME_API_KEY` | Sets wallpaper as NASA using specified API key
-`$ potd -n -R` | Sets wallpaper as a random NASA photo
 `$ potd -n -d 2019-06-18` | Sets wallpaper as NASA from 2019-06-18
+`$ potd -n -R` | Sets wallpaper as a random NASA photo
 `$ potd -n -k SOME_API_KEY -d 2019-06-18` | Sets wallpaper as NASA from 2019-06-18 using specified API key
 `$ potd -N -d 2019-06-06` | Sets wallpaper as National Geographic from 2019-06-06
+`$ potd -N -R` | Sets wallpaper as a random National Geographic photo
 `$ potd -o centered` | Wallpaper centered on desktop
