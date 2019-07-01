@@ -80,8 +80,7 @@ const main = async () => {
   } else if (process.platform === 'darwin') {
     linux = false;
   } else {
-    console.error('Your platform is not supported yet.');
-    process.exitCode = 1;
+    throw new Error('Your platform is not supported yet.');
   }
   let searchUrl;
   if (argv.N) {
@@ -113,8 +112,7 @@ const main = async () => {
       if (argv.N) {
         photo = res.data.items[+argv.d.slice(8) - 1];
         if (!photo) {
-          console.error(`There is no photo on ${argv.d}.`);
-          process.exitCode = 1;
+          throw new Error(`There is no photo on ${argv.d}.`);
         }
         if (photo.image) {
           photoUrl = photo.image.uri;
@@ -131,8 +129,7 @@ const main = async () => {
           photoName = photoUrl.slice(photoUrl.lastIndexOf('/') + 1);
           photoDir += 'NASA/';
         } else {
-          console.error(`There is no photo on ${argv.d}.`);
-          process.exitCode = 1;
+          throw new Error(`There is no photo on ${argv.d}.`);
         }
       } else {
         photo = `${res.data.images[res.data.images.length - 1].urlbase}_${argv.r}.jpg`;
@@ -142,23 +139,20 @@ const main = async () => {
       }
     })
     .catch(err => {
-      console.error(err);
-      process.exitCode = 1;
+      throw new Error(err);
     });
   const directory = (linux ? '/home/' : '/Users/') + process.env.USER + photoDir;
   const fileName = directory + photoName;
   await fs.promises.mkdir(directory, { recursive: true })
     .catch(err => {
-      console.error(err);
-      process.exitCode = 1;
+      throw new Error(err);
     });
   await axios({ url: photoUrl, responseType: 'stream', timeout: 20000 })
     .then(res => {
       res.data.pipe(fs.createWriteStream(fileName));
     })
     .catch(err => {
-      console.error(err);
-      process.exitCode = 1;
+      throw new Error(err);
     });
   let command;
   if (linux) {
@@ -168,8 +162,7 @@ const main = async () => {
   }
   childProcess.exec(command, (err, stdout, stderr) => {
     if (err) {
-      console.error(err);
-      process.exitCode = 1;
+      throw new Error(err);
     }
   });
 };
