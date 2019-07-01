@@ -112,8 +112,17 @@ const main = async () => {
     .then(res => {
       if (argv.N) {
         photo = res.data.items[+argv.d.slice(8) - 1];
-        photoUrl = photo.originalUrl;
-        photoName = `${photo.title}.jpg`;
+        if (!photo) {
+          console.error(`There is no photo on ${argv.d}.`);
+          process.exitCode = 1;
+        }
+        if (photo.image) {
+          photoUrl = photo.image.uri;
+          photoName = `${photo.image.title}.jpg`;
+        } else {
+          photoUrl = photo.originalUrl;
+          photoName = `${photo.title}.jpg`;
+        }
         photoDir += 'National Geographic/';
       } else if (argv.n) {
         photo = argv.R ? res.data[0] : res.data;
@@ -122,7 +131,7 @@ const main = async () => {
           photoName = photoUrl.slice(photoUrl.lastIndexOf('/') + 1);
           photoDir += 'NASA/';
         } else {
-          console.error('There is no photo today.');
+          console.error(`There is no photo on ${argv.d}.`);
           process.exitCode = 1;
         }
       } else {
