@@ -45,16 +45,16 @@ const argv = yargs
       type: 'string',
       default: 'DEMO_KEY'
     },
-    'd': {
-      alias: 'date',
-      describe: 'NASA date option (YYYY-mm-dd)',
-      type: 'string',
-      default: new Date().toISOString().slice(0, 10)
-    },
     'R': {
       alias: 'random',
       describe: 'NASA random option',
       type: 'boolean'
+    },
+    'd': {
+      alias: 'date',
+      describe: 'NASA & National Geographic date option (YYYY-mm-dd)',
+      type: 'string',
+      default: new Date().toISOString().slice(0, 10)
     },
     'o': {
       alias: 'option',
@@ -85,7 +85,7 @@ const main = async () => {
   }
   let searchUrl;
   if (argv.N) {
-    searchUrl = 'https://www.nationalgeographic.com/photography/photo-of-the-day/_jcr_content/.gallery.json';
+    searchUrl = `https://www.nationalgeographic.com/photography/photo-of-the-day/_jcr_content/.gallery.${argv.d.slice(0, 7)}.json`;
   } else if (argv.n) {
     searchUrl = `https://api.nasa.gov/planetary/apod?api_key=${argv.k}&hd=True&${argv.R ? 'count=1' : `date=${argv.d}`}`;
   } else {
@@ -107,7 +107,7 @@ const main = async () => {
   await axios(searchUrl)
     .then(res => {
       if (argv.N) {
-        photo = res.data.items[0];
+        photo = res.data.items[+argv.d.slice(8) - 1];
         photoUrl = photo.originalUrl;
         photoName = `${photo.title}.jpg`;
         photoDir += 'National Geographic/';
