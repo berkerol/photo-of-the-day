@@ -150,6 +150,7 @@ const main = async () => {
   await axios({ url: photoUrl, responseType: 'stream', timeout: 20000 })
     .then(res => {
       res.data.pipe(fs.createWriteStream(fileName));
+      console.log(`${photoName} is saved.`);
     })
     .catch(err => {
       throw new Error(err);
