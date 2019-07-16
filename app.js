@@ -74,14 +74,6 @@ const argv = yargs
   .argv;
 
 const main = async () => {
-  let linux;
-  if (process.platform === 'linux') {
-    linux = true;
-  } else if (process.platform === 'darwin') {
-    linux = false;
-  } else {
-    throw new Error('Your platform is not supported yet.');
-  }
   let searchUrl;
   if (argv.N) {
     if (argv.R) {
@@ -106,7 +98,7 @@ const main = async () => {
   let photo;
   let photoUrl;
   let photoName;
-  let photoDir = '/Pictures/';
+  let photoDir;
   await axios(searchUrl)
     .then(res => {
       if (argv.N) {
@@ -119,7 +111,7 @@ const main = async () => {
             photoUrl = photo.originalUrl;
             photoName = `${photo.title}.jpg`;
           }
-          photoDir += 'National Geographic/';
+          photoDir = 'National Geographic';
         } else {
           throw new Error(`There is no photo on ${argv.d}.`);
         }
@@ -128,7 +120,7 @@ const main = async () => {
         if (photo.hdurl) {
           photoUrl = photo.hdurl;
           photoName = photoUrl.slice(photoUrl.lastIndexOf('/') + 1);
-          photoDir += 'NASA/';
+          photoDir = 'NASA';
         } else {
           throw new Error(`There is no photo on ${argv.d}.`);
         }
@@ -136,13 +128,27 @@ const main = async () => {
         photo = `${res.data.images[res.data.images.length - 1].urlbase}_${argv.r}.jpg`;
         photoUrl = `https://www.bing.com${photo}`;
         photoName = photo.slice(photo.indexOf('.') + 1);
-        photoDir += 'Bing/';
+        photoDir = 'Bing';
       }
     })
     .catch(err => {
       throw new Error(err);
     });
-  const directory = (linux ? '/home/' : '/Users/') + process.env.USER + photoDir;
+  let platform;
+  let directory;
+  if (process.platform === 'linux') {
+    platform = 0;
+    directory = '/home/' + process.env.USER;
+  } else if (process.platform === 'darwin') {
+    platform = 1;
+    directory = '/Users/' + process.env.USER;
+  } else if (process.platform === 'win32') {
+    platform = 2;
+    directory = '/Users/' + process.env.USERNAME;
+  } else {
+    throw new Error('Your platform is not supported yet.');
+  }
+  directory += '/Pictures/' + photoDir + '/';
   const fileName = directory + photoName;
   await fs.promises.mkdir(directory, { recursive: true })
     .catch(err => {
@@ -157,10 +163,12 @@ const main = async () => {
       throw new Error(err);
     });
   let command;
-  if (linux) {
+  if (platform === 0) {
     command = `gsettings set org.gnome.desktop.background picture-options "${argv.o}" & gsettings set org.gnome.desktop.background picture-uri "file://${fileName}"`;
-  } else {
+  } else if (platform === 1) {
     command = `osascript -e 'tell application "Finder" to set desktop picture to POSIX file "${fileName}"'`;
+  } else {
+    throw new Error('Windows is not supported for wallpaper setting yet.');
   }
   childProcess.exec(command, (err, stdout, stderr) => {
     if (err) {
