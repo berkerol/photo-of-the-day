@@ -18,6 +18,11 @@ const argv = yargs
       describe: 'Choose National Geographic photo',
       type: 'boolean'
     },
+    'u': {
+      alias: 'unsplash',
+      describe: 'Choose Unsplash photo',
+      type: 'boolean'
+    },
     'b': {
       alias: 'before',
       describe: 'Bing date option (# of days before)',
@@ -101,7 +106,11 @@ const main = async () => {
   let photoDir;
   await axios(searchUrl)
     .then(res => {
-      if (argv.N) {
+      if (argv.u) {
+        photoUrl = `https://source.unsplash.com/random/${argv.r}`;
+        photoName = new Date().toISOString().replace(/:/g, '.') + '.jpg';
+        photoDir = 'Unsplash';
+      } else if (argv.N) {
         if (+argv.d.slice(8) <= res.data.items.length) {
           photo = res.data.items[res.data.items.length - +argv.d.slice(8)];
           if (photo.image) {
