@@ -2,6 +2,7 @@
 
 [![NPM](https://nodei.co/npm/photo-of-the-day.png)](https://nodei.co/npm/photo-of-the-day/)
 
+[![Sonarcloud Status](https://sonarcloud.io/api/project_badges/measure?project=berkerol_photo-of-the-day&metric=alert_status)](https://sonarcloud.io/dashboard?id=berkerol_photo-of-the-day)
 [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg)](https://github.com/berkerol/photo-of-the-day/issues)
 [![semistandard](https://img.shields.io/badge/code%20style-semistandard-brightgreen.svg)](https://github.com/Flet/semistandard)
 [![ECMAScript](https://img.shields.io/badge/ECMAScript-latest-brightgreen.svg)](https://www.ecma-international.org/ecma-262)
