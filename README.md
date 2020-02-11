@@ -16,7 +16,7 @@ Downloads [Bing Photo of the Day](https://www.bing.com), [NASA Astronomy Picture
 * Set date, locale & resolution for Bing photos.
 * Use custom API key for NASA.
 * Set date for NASA & National Geographic photos.
-* Choose a random photo from NASA & National Geographic.
+* Choose a random photo from NASA & National Geographic & Unsplash.
 * Set resolution for Unsplash photos.
 * Set background display option for Linux.
 * Stores all photos in _~/Pictures/Bing_, _~/Pictures/NASA_, _~/Pictures/National Geographic_, _~/Pictures/Unsplash_.
@@ -62,7 +62,7 @@ Flag | Short | Description | Usage
 `--resolution` | `-r` | Set resolution for Bing & Unsplash | `-r 1920x1200`
 `--key` | `-k` | Set API key for NASA | `-k SOME_API_KEY`
 `--date` | `-d` | Set date for NASA or National Geographic (YYYY-mm-dd) | `-d 2019-06-19`
-`--random` | `-R` | Choose a random photo from NASA or National Geographic | `-R`
+`--random` | `-R` | Choose a random photo from NASA or National Geographic or Unsplash | `-R`
 `--option` | `-o` | Set background display option for Linux | `-o centered`
 
 ## Examples
@@ -81,9 +81,12 @@ Example | Description
 `$ potd -n -d 2019-06-18` | Sets wallpaper as NASA from 2019-06-18
 `$ potd -n -R` | Sets wallpaper as a random NASA photo
 `$ potd -n -k SOME_API_KEY -d 2019-06-18` | Sets wallpaper as NASA from 2019-06-18 using specified API key
+`$ potd -n -k SOME_API_KEY -R` | Sets wallpaper as a random NASA photo using specified API key
 `$ potd -N -d 2019-06-06` | Sets wallpaper as National Geographic from 2019-06-06
 `$ potd -N -R` | Sets wallpaper as a random National Geographic photo
 `$ potd -u -r 1920x1200` | Sets wallpaper as Unsplash with 1920x1200 resolution
+`$ potd -u -R` | Sets wallpaper as a random Unsplash photo
+`$ potd -u -r 1920x1200 -R` | Sets wallpaper as a random Unsplash photo with 1920x1200 resolution
 `$ potd -o centered` | Wallpaper centered on desktop
 
 ## TODO
@@ -101,8 +104,10 @@ Example | Description
 * [x] Random option for NASA
 * [x] Date option for National Geographic
 * [x] Random option for National Geographic
+* [x] Resolution option for Unsplash
+* [x] Random option for Unsplash
 * [x] Background display option for Linux
-* [ ] Windows 10
+* [ ] Windows 10 (saves image but can't set as wallpaper)
 * [x] Mac OS X
 * [x] Linux GNOME & Unity
 * [ ] Other Linux desktops

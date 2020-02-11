@@ -39,7 +39,7 @@ const argv = yargs
     },
     'r': {
       alias: 'resolution',
-      describe: 'Bing resolution option',
+      describe: 'Bing & Unsplash resolution option',
       type: 'string',
       default: '1920x1080',
       choices: ['800x600', '1024x768', '1280x720', '1280x768', '1366x768', '1920x1080', '1920x1200']
@@ -58,7 +58,7 @@ const argv = yargs
     },
     'R': {
       alias: 'random',
-      describe: 'NASA & National Geographic random option',
+      describe: 'NASA & National Geographic & Unsplash random option',
       type: 'boolean'
     },
     'o': {
@@ -108,7 +108,14 @@ const main = async () => {
     .then(res => {
       if (argv.u) {
         photoUrl = `https://source.unsplash.com/random/${argv.r}`;
-        photoName = new Date().toISOString().replace(/:/g, '.') + '.jpg';
+        photoName = new Date().toISOString();
+        if (argv.R) {
+          photoName = photoName.replace(/:/g, '.');
+        } else {
+          photoUrl += '/daily';
+          photoName = photoName.slice(0, 10);
+        }
+        photoName += '.jpg';
         photoDir = 'Unsplash';
       } else if (argv.N) {
         if (+argv.d.slice(8) <= res.data.items.length) {
