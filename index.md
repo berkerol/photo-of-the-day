@@ -55,6 +55,7 @@ Flag | Short | Description | Usage
 `--key` | `-k` | Set API key for NASA | `-k SOME_API_KEY`
 `--date` | `-d` | Set date for NASA or National Geographic (YYYY-mm-dd) | `-d 2019-06-19`
 `--random` | `-R` | Choose a random photo from NASA or National Geographic or Unsplash | `-R`
+`--wallpaper` | `-w` | Don't set downloaded photo as wallpaper (can be used for bulk downloading) | `-w`
 `--option` | `-o` | Set background display option for Linux | `-o centered`
 
 ## Examples
@@ -79,4 +80,5 @@ Example | Description
 `$ potd -u -r 1920x1200` | Sets wallpaper as Unsplash with 1920x1200 resolution
 `$ potd -u -R` | Sets wallpaper as a random Unsplash photo
 `$ potd -u -r 1920x1200 -R` | Sets wallpaper as a random Unsplash photo with 1920x1200 resolution
+`$ potd -w` | Only downloads Bing photo (doesn't set it as wallpaper)
 `$ potd -o centered` | Wallpaper centered on desktop

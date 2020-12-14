@@ -61,6 +61,11 @@ const argv = yargs
       describe: 'NASA & National Geographic & Unsplash random option',
       type: 'boolean'
     },
+    'w': {
+      alias: 'wallpaper',
+      describe: 'Don\'t set downloaded photo as wallpaper (can be used for bulk downloading)',
+      type: 'boolean'
+    },
     'o': {
       alias: 'option',
       describe: 'Linux background display option',
@@ -178,19 +183,21 @@ const main = async () => {
     .catch(err => {
       throw new Error(err);
     });
-  let command;
-  if (platform === 0) {
-    command = `gsettings set org.gnome.desktop.background picture-options "${argv.o}" & gsettings set org.gnome.desktop.background picture-uri "file://${fileName}"`;
-  } else if (platform === 1) {
-    command = `osascript -e 'tell application "Finder" to set desktop picture to POSIX file "${fileName}"'`;
-  } else {
-    throw new Error('Windows is not supported for wallpaper setting yet.');
-  }
-  childProcess.exec(command, (err, stdout, stderr) => {
-    if (err) {
-      throw new Error(err);
+  if (!argv.w) {
+    let command;
+    if (platform === 0) {
+      command = `gsettings set org.gnome.desktop.background picture-options "${argv.o}" & gsettings set org.gnome.desktop.background picture-uri "file://${fileName}"`;
+    } else if (platform === 1) {
+      command = `osascript -e 'tell application "Finder" to set desktop picture to POSIX file "${fileName}"'`;
+    } else {
+      throw new Error('Windows is not supported for wallpaper setting yet.');
     }
-  });
+    childProcess.exec(command, (err, stdout, stderr) => {
+      if (err) {
+        throw new Error(err);
+      }
+    });
+  }
 };
 
 main();
