@@ -188,7 +188,7 @@ const main = async () => {
     if (platform === 0) {
       command = `gsettings set org.gnome.desktop.background picture-options "${argv.o}" & gsettings set org.gnome.desktop.background picture-uri "file://${fileName}"`;
     } else if (platform === 1) {
-      command = `osascript -e 'tell application "Finder" to set desktop picture to POSIX file "${fileName}"'`;
+      command = `osascript -e 'tell application "System Events" to tell every desktop to set picture to "${fileName}"'`;
     } else {
       throw new Error('Windows is not supported for wallpaper setting yet.');
     }
